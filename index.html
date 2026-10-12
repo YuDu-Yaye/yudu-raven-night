@@ -3,28 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>羽渡鸦夜 · 冰山之下，请勿靠近（除非你很想）</title>
-
+<title>羽渡鸦夜 · 全栈工程 / 后端 · 前端 · 数据库 · 服务器 · AI · 逆向</title>
 <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
-
-<meta name="description" content="羽渡鸦夜 —— 中国的 Java / C++ / 全栈开发者。看上去很冷，其实……不，没什么。" />
+<meta name="description" content="羽渡鸦夜 —— 全栈工程师。网站、后端、前端、数据库、服务器运维、AI 工程、逆向与网络通信。精通 / 熟练 / 会用 / 了解，四级如实标注。" />
 <meta name="author" content="羽渡鸦夜" />
 <meta name="theme-color" content="#07050f" />
-
 <meta property="og:type" content="profile" />
-<meta property="og:title" content="羽渡鸦夜 · 冰山之下" />
-<meta property="og:description" content="Java / C++ / 全栈。别盯着看，我会……没什么。" />
+<meta property="og:title" content="羽渡鸦夜 · 全栈工程" />
+<meta property="og:description" content="后端 · 前端 · 数据库 · 服务器 · AI · 逆向 · 网络通信" />
 <meta property="og:locale" content="zh_CN" />
-
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0718'/%3E%3Cg stroke='%23a9c4ff' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M32 12v40M15 22l34 20M49 22L15 42'/%3E%3Cpath d='M32 20l-7-6M32 20l7-6M32 44l-7 6M32 44l7 6'/%3E%3C/g%3E%3C/svg%3E" />
-
 <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-
-<a class="skip" href="#about">跳到正文</a>
-
-<!-- ============ 冰原背景 ============ -->
+<a class="skip" href="#skills">跳到技能</a>
 <div class="bg" aria-hidden="true">
   <div class="bg__wash"></div>
   <div class="bg__aurora">
@@ -33,31 +25,27 @@
     <span class="glow glow--c"></span>
   </div>
   <canvas id="frost"></canvas>
-  <div class="bg__cracks"></div>
+  <div class="bg__grid"></div>
   <div class="bg__vig"></div>
 </div>
-
 <div class="pointer-ice" id="pointerIce" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
-
-
-<!-- ============ 导航 ============ -->
 <header class="nav" id="nav">
   <div class="nav__inner">
     <a class="brand" href="#top" aria-label="回到顶部">
       <span class="brand__crystal" aria-hidden="true">
         <svg viewBox="0 0 48 48">
-          <g stroke="url(#cg)" stroke-width="2.2" stroke-linecap="round" fill="none">
-            <path d="M24 6v36M10 15l28 18M38 15L10 33"/>
-            <path d="M24 12l-5-4M24 12l5-4M24 36l-5 4M24 36l5 4M14 20l-6-1M34 20l6-1M14 28l-6 1M34 28l6 1"/>
-          </g>
           <defs>
-            <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#eef0ff"/>
-              <stop offset="55%" stop-color="#a9c4ff"/>
+            <linearGradient id="crystalG" gradientUnits="userSpaceOnUse" x1="6" y1="6" x2="42" y2="42">
+              <stop offset="0%"   stop-color="#eef0ff"/>
+              <stop offset="55%"  stop-color="#a9c4ff"/>
               <stop offset="100%" stop-color="#b18cff"/>
             </linearGradient>
           </defs>
+          <g stroke="url(#crystalG)" stroke-width="2.2" stroke-linecap="round" fill="none">
+            <path d="M24 6v36M10 15l28 18M38 15L10 33"/>
+            <path d="M24 12l-5-4M24 12l5-4M24 36l-5 4M24 36l5 4M14 20l-6-1M34 20l6-1M14 28l-6 1M34 28l6 1"/>
+          </g>
         </svg>
       </span>
       <span class="brand__txt">
@@ -65,45 +53,33 @@
         <small>YUDU RAVEN NIGHT</small>
       </span>
     </a>
-
     <nav class="nav__links" aria-label="主导航">
-      <a href="#dual">表与里</a>
-      <a href="#about">关于</a>
       <a href="#skills">技能</a>
+      <a href="#domains">领域</a>
+      <a href="#ai">AI 工程</a>
       <a href="#works">作品</a>
-      <a href="#contact">找我</a>
+      <a href="#contact">联系</a>
     </nav>
-
-    <a class="btn btn--line nav__cta" href="#contact">预约联系</a>
-
+    <a class="btn btn--line nav__cta" href="#contact">取得联系</a>
     <button class="nav__burger" id="navBurger" aria-label="打开菜单" aria-expanded="false" aria-controls="drawer">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
-
 <div class="drawer" id="drawer" aria-hidden="true">
-  <a href="#dual">表与里</a>
-  <a href="#about">关于</a>
-  <a href="#skills">技能</a>
+  <a href="#skills">技能矩阵</a>
+  <a href="#domains">专长领域</a>
+  <a href="#ai">AI 工程</a>
   <a href="#works">作品</a>
-  <a href="#contact">找我</a>
+  <a href="#contact">联系</a>
 </div>
-
-
 <main id="top">
-
-  <!-- ============================================================
-       HERO
-       ============================================================ -->
   <section class="hero">
     <div class="hero__grid">
-
-      <!-- 吉祥物 -->
       <div class="hero__side" data-in>
         <div class="mascot">
           <div class="mascot__aura"></div>
-          <svg class="mascot__svg" viewBox="0 0 220 240" role="img" aria-label="一只看上去很冷的紫色小乌鸦，但脸颊是红的">
+          <svg class="mascot__svg" viewBox="0 0 220 240" role="img" aria-label="一只紫色小乌鸦">
             <defs>
               <radialGradient id="bd" cx="36%" cy="28%" r="80%">
                 <stop offset="0%"   stop-color="#6a55a8"/>
@@ -114,7 +90,7 @@
                 <stop offset="0%"   stop-color="#54418c"/>
                 <stop offset="100%" stop-color="#2c2054"/>
               </linearGradient>
-              <linearGradient id="ic" x1="0" y1="0" x2="1" y2="1">
+              <linearGradient id="ic" gradientUnits="userSpaceOnUse" x1="100" y1="10" x2="122" y2="40">
                 <stop offset="0%"   stop-color="#eef0ff"/>
                 <stop offset="60%"  stop-color="#a9c4ff"/>
                 <stop offset="100%" stop-color="#b18cff"/>
@@ -124,31 +100,20 @@
                 <stop offset="100%" stop-color="#ff9f3d"/>
               </linearGradient>
             </defs>
-
-            <!-- 冰晶王冠 -->
             <g class="mascot__crown" stroke="url(#ic)" stroke-width="3" stroke-linecap="round" fill="none">
               <path d="M110 30v-14M110 24l-9-8M110 24l9-8M110 32l-6 5M110 32l6 5"/>
             </g>
-
-            <!-- 身体 -->
             <ellipse cx="110" cy="168" rx="57" ry="49" fill="url(#bd)"/>
             <circle cx="110" cy="112" r="50" fill="url(#bd)"/>
-
-            <!-- 翅膀：收得很紧（防备姿态） -->
             <ellipse class="mascot__wing mascot__wing--l" cx="56" cy="168" rx="14" ry="27"
                      fill="url(#wg)" transform="rotate(-8 56 168)"/>
             <ellipse class="mascot__wing mascot__wing--r" cx="164" cy="168" rx="14" ry="27"
                      fill="url(#wg)" transform="rotate(8 164 168)"/>
-
-            <!-- 脚 -->
             <path d="M93 212q-8 10-14 8M93 212q0 11-6 13" stroke="url(#bk)" stroke-width="4"
                   stroke-linecap="round" fill="none"/>
             <path d="M127 212q8 10 14 8M127 212q0 11 6 13" stroke="url(#bk)" stroke-width="4"
                   stroke-linecap="round" fill="none"/>
-
-            <!-- 眼：半眯（高冷） -->
             <g class="mascot__eyes">
-              <path class="mascot__lid" d="M76 110q14-9 28 0" stroke="#241a4a" stroke-width="0" fill="none"/>
               <ellipse cx="90" cy="109" rx="12.5" ry="14.5" fill="#fff"/>
               <ellipse cx="130" cy="109" rx="12.5" ry="14.5" fill="#fff"/>
               <circle class="mascot__pupil" cx="92" cy="111" r="7.6" fill="#241a4a"/>
@@ -156,343 +121,386 @@
               <circle cx="95" cy="106.5" r="3" fill="#fff"/>
               <circle cx="135" cy="106.5" r="3" fill="#fff"/>
             </g>
-            <!-- 眼睑：半眯，冷 -->
             <g class="mascot__lashes" fill="#3d2d70">
               <path d="M76 104h29l-2 4H76z"/>
               <path d="M115 104h29l-2 4h-27z"/>
             </g>
-
-            <!-- 腮红：藏不住的部分 -->
             <ellipse class="mascot__blush" cx="69" cy="129" rx="12" ry="7" fill="#ff9ecb" opacity=".5"/>
             <ellipse class="mascot__blush" cx="151" cy="129" rx="12" ry="7" fill="#ff9ecb" opacity=".5"/>
-
-            <!-- 喙 -->
             <path d="M110 126l-8 7.6l8 6.4l8-6.4z" fill="url(#bk)"/>
             <path d="M110 126l-8 7.6h16z" fill="#ffb347"/>
           </svg>
-
           <span class="mascot__bit mascot__bit--1">✦</span>
           <span class="mascot__bit mascot__bit--2">❄</span>
           <span class="mascot__bit mascot__bit--3">✧</span>
         </div>
-
         <div class="coldnote" data-in>
-          <p id="mascotLine">……别盯着看。</p>
+          <p id="mascotLine">在写代码。</p>
         </div>
       </div>
-
-      <!-- 文案 -->
       <div class="hero__copy">
         <p class="kicker" data-in>
           <span class="kicker__line"></span>
           中国 · CHINA
           <span class="kicker__sep">/</span>
-          <span class="kicker__status">现在：一个人待着</span>
+          <span class="kicker__status">全栈工程</span>
         </p>
-
         <h1 class="hero__name" data-in>
           <span class="hero__cn">羽渡鸦夜</span>
           <span class="hero__en">YUDU RAVEN NIGHT</span>
         </h1>
-
         <p class="hero__rule" data-in><i></i></p>
-
-        <p class="hero__lead" data-in>
-          冰山美人。至少别人是这么说的。<br />
-          <span class="cold">话少，不爱解释，讨厌被围观。</span>
-        </p>
-
         <h2 class="hero__role" data-in>
-          <span class="hero__role-k">职业</span>
-          <span class="typer" id="typer" aria-live="polite"></span><span class="caret" aria-hidden="true"></span>
+          <span class="typer" id="typer" aria-live="polite">后端架构 / Java 生态</span><span class="caret" aria-hidden="true"></span>
         </h2>
-
         <p class="hero__desc" data-in>
-          <b>Java</b> 后端、<b>C++</b> 系统、前端全栈。
-          写得慢，但很少返工；不爱说话，但代码会替我说完。
+          从数据库到浏览器，从服务器到网络协议。<br />
+          网站、后端、前端、数据库、服务器运维、AI 工程，以及逆向与网络通信。
+          <span class="cold">有些精通，有些熟练，有些只是了解 —— 都如实写在下面，不夸大。</span>
         </p>
-
         <div class="hero__btns" data-in>
-          <a class="btn btn--solid" href="#works">
-            <span>看作品</span>
+          <a class="btn btn--solid" href="#skills">
+            <span>看技能矩阵</span>
             <span class="btn__a">→</span>
           </a>
-          <a class="btn btn--line" href="#contact">……联系我</a>
+          <a class="btn btn--line" href="#works">看作品</a>
         </div>
-
         <ul class="hero__meta" data-in>
-          <li><b>Java</b><span>后端 / 架构</span></li>
-          <li><b>C++</b><span>系统 / 性能</span></li>
-          <li><b>Web</b><span>全栈交付</span></li>
+          <li><b>7</b><span>专长领域</span></li>
+          <li><b>60<em>+</em></b><span>技术栈</span></li>
+          <li><b>4</b><span>熟练度分级</span></li>
         </ul>
       </div>
     </div>
-
-    <a class="hero__down" href="#dual" aria-label="继续">
-      <span>往下</span><i></i>
+    <a class="hero__down" href="#skills" aria-label="继续">
+      <span>技能矩阵</span><i></i>
     </a>
   </section>
-
-
-  <!-- ============================================================
-       表与里 —— 融冰
-       ============================================================ -->
-  <section class="sec" id="dual">
+  <section class="sec" id="skills">
     <header class="sec__head" data-in>
       <span class="sec__num">01</span>
-      <h2 class="sec__title">表与里</h2>
-      <p class="sec__sub">SURFACE &amp; DEPTH · 冰面之上是一角，之下是全部</p>
+      <h2 class="sec__title">技能矩阵</h2>
+      <p class="sec__sub">SKILL MATRIX · 四级如实标注</p>
     </header>
-
-    <div class="melt" id="melt" data-in>
-      <!-- 冰层覆盖 -->
-      <div class="melt__ice" aria-hidden="true">
-        <svg viewBox="0 0 600 400" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="iceg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%"   stop-color="rgba(216,226,255,.30)"/>
-              <stop offset="45%"  stop-color="rgba(169,196,255,.16)"/>
-              <stop offset="100%" stop-color="rgba(177,140,255,.22)"/>
-            </linearGradient>
-          </defs>
-          <rect width="600" height="400" fill="url(#iceg)"/>
-          <g stroke="rgba(238,240,255,.30)" stroke-width="1.2" fill="none">
-            <path d="M0 40 L120 90 L60 180 L0 150"/>
-            <path d="M120 90 L260 60 L300 170 L180 230 L60 180"/>
-            <path d="M260 60 L430 30 L520 130 L300 170"/>
-            <path d="M430 30 L600 70 L600 200 L520 130"/>
-            <path d="M0 260 L140 240 L210 340 L80 400"/>
-            <path d="M140 240 L330 260 L360 380 L210 340"/>
-            <path d="M330 260 L520 240 L600 330 L600 400 L360 380"/>
-          </g>
-        </svg>
-      </div>
-
-      <div class="melt__stack">
-        <!-- 冷面 -->
-        <div class="melt__face melt__face--cold">
-          <p class="melt__tag">SURFACE</p>
-          <h3 class="melt__h">你以为的我</h3>
-          <ul class="melt__list">
-            <li>话很少，回消息很慢</li>
-            <li>不笑，也不太看人</li>
-            <li>「有事说事」型</li>
-            <li>聚会里站在角落的那个</li>
-            <li>看起来不好接近</li>
-          </ul>
-        </div>
-
-        <!-- 软面 -->
-        <div class="melt__face melt__face--warm">
-          <p class="melt__tag melt__tag--warm">DEPTH</p>
-          <h3 class="melt__h melt__h--warm">实际上的我</h3>
-          <ul class="melt__list melt__list--warm">
-            <li>回得慢是因为在反复删改，怕说错</li>
-            <li>不笑是因为一紧张脸就僵住了</li>
-            <li>「有事说事」其实是怕冷场</li>
-            <li>站角落是因为人一多就喘不过气</li>
-            <li>……其实很希望有人先开口</li>
-          </ul>
-          <p class="melt__foot">看完了？那就……别说出去了。<em>我会装作没写。</em></p>
-        </div>
-      </div>
-
-      <button class="melt__btn" id="meltBtn" aria-pressed="false" aria-controls="melt">
-        <span class="melt__btn-txt">敲开冰面</span>
-        <span class="melt__btn-ico" aria-hidden="true">❄</span>
-      </button>
+    <div class="legend" data-in>
+      <span class="legend__item"><i class="lv lv--1"></i><b>精通</b>主力栈，能扛核心</span>
+      <span class="legend__item"><i class="lv lv--2"></i><b>熟练</b>能独立交付</span>
+      <span class="legend__item"><i class="lv lv--3"></i><b>会用</b>能做，深度有限</span>
+      <span class="legend__item"><i class="lv lv--4"></i><b>了解</b>懂原理，缺实战</span>
     </div>
-
-    <p class="melt__hint" data-in>（她不会主动说的。所以要你点。）</p>
-  </section>
-
-
-  <!-- ============================================================
-       属性
-       ============================================================ -->
-  <section class="sec" id="stats">
-    <header class="sec__head" data-in>
-      <span class="sec__num">02</span>
-      <h2 class="sec__title">属性</h2>
-      <p class="sec__sub">STATUS · 数据不会说谎，但我会</p>
-    </header>
-
-    <div class="panel" data-in>
-      <div class="panel__grid">
-        <div class="stat" data-val="97">
-          <div class="stat__top"><span>代码力</span><b><i class="count" data-to="97">0</i></b></div>
-          <div class="stat__bar"><i style="--w:97%;--c1:#a9c4ff;--c2:#eef0ff"></i></div>
+    <div class="matrix">
+      <div class="tier tier--1" data-in>
+        <div class="tier__head">
+          <i class="lv lv--1"></i>
+          <h3 class="tier__name">精通</h3>
+          <span class="tier__count" data-count="14">0</span>
         </div>
-        <div class="stat" data-val="95">
-          <div class="stat__top"><span>架构力</span><b><i class="count" data-to="95">0</i></b></div>
-          <div class="stat__bar"><i style="--w:95%;--c1:#9d7bff;--c2:#c9b6ff"></i></div>
-        </div>
-        <div class="stat" data-val="94">
-          <div class="stat__top"><span>高冷度</span><b><i class="count" data-to="94">0</i></b></div>
-          <div class="stat__bar"><i style="--w:94%;--c1:#6f8dff;--c2:#a9c4ff"></i></div>
-        </div>
-        <div class="stat" data-val="91">
-          <div class="stat__top"><span>性能调优</span><b><i class="count" data-to="91">0</i></b></div>
-          <div class="stat__bar"><i style="--w:91%;--c1:#7c5cff;--c2:#b18cff"></i></div>
-        </div>
-        <div class="stat stat--low" data-val="2">
-          <div class="stat__top"><span>社交电量</span><b><i class="count" data-to="2">0</i>%</b></div>
-          <div class="stat__bar"><i style="--w:2%;--c1:#9ff0dc;--c2:#7fe3c9"></i></div>
-        </div>
-        <div class="stat stat--hide" data-val="88">
-          <div class="stat__top"><span>心软度</span><b><i class="count" data-to="88">0</i></b></div>
-          <div class="stat__bar"><i style="--w:88%;--c1:#ff9ed4;--c2:#ffc2e2"></i></div>
-        </div>
-      </div>
-
-      <p class="panel__note">
-        <span class="panel__mk">※</span>
-        「心软度」这一项本来不该出现的。……别看。
-      </p>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       关于
-       ============================================================ -->
-  <section class="sec" id="about">
-    <header class="sec__head" data-in>
-      <span class="sec__num">03</span>
-      <h2 class="sec__title">关于</h2>
-      <p class="sec__sub">ABOUT · 只说必要的部分</p>
-    </header>
-
-    <div class="about">
-      <div class="about__prose" data-in>
-        <p class="about__lead">
-          我是<strong>羽渡鸦夜</strong>。做后端，也做系统，前端顺手。
-        </p>
-        <p>
-          大部分时间在写 <b>Java</b> —— 服务、并发、分布式，以及那些看不见但必须正确的地方。
-          需要碰到性能边界的时候会用 <b>C++</b>：内存、锁、缓存行、指令级的那点余量。
-          前端也写，因为一个系统最终是被人用的，我不想在最后一步将就。
-        </p>
-        <p>
-          我不擅长自我介绍，也不擅长把自己说得很好听。
-          所以这里放的是事实：写了多年，交付过不少，线上基本没出过大事。
-          <span class="cold">其余的，你从代码里看吧。</span>
-        </p>
-        <p class="about__cold">
-          —— 如果你是想找个人把事情做完，我不介意。<br />
-          <span class="soft">……但别指望我会一直陪你聊天。</span>
-        </p>
-
-        <ul class="about__tags">
-          <li>高并发 / 分布式</li>
+        <p class="tier__desc">主力技术栈，长期在生产环境里用</p>
+        <ul class="tier__list">
+          <li>Java</li>
+          <li>Spring Boot</li>
+          <li>Spring Cloud</li>
           <li>JVM 调优</li>
-          <li>C++ 系统开发</li>
-          <li>全栈交付</li>
-          <li>长期主义</li>
+          <li>后端架构</li>
+          <li>高并发设计</li>
+          <li>分布式系统</li>
+          <li>MySQL</li>
+          <li>Redis</li>
+          <li>数据库设计</li>
+          <li>SQL 优化</li>
+          <li>RESTful API</li>
+          <li>HTML / CSS</li>
+          <li>JavaScript</li>
         </ul>
       </div>
-
-      <aside class="tagcard" data-in>
-        <div class="tagcard__glow" aria-hidden="true"></div>
-        <div class="trow"><span class="trow__k">代号</span><span class="trow__v">羽渡鸦夜</span></div>
-        <div class="trow"><span class="trow__k">坐标</span><span class="trow__v">中国</span></div>
-        <div class="trow"><span class="trow__k">方向</span><span class="trow__v">后端 · 系统 · 全栈</span></div>
-        <div class="trow"><span class="trow__k">主语言</span><span class="trow__v">Java · C++ · TypeScript</span></div>
-        <div class="trow"><span class="trow__k">信条</span><span class="trow__v">代码如羽，渡夜而行</span></div>
-        <div class="trow trow--state">
-          <span class="trow__k">状态</span>
-          <span class="trow__v"><i class="led"></i>可接单，但请先发文字</span>
+      <div class="tier tier--2" data-in>
+        <div class="tier__head">
+          <i class="lv lv--2"></i>
+          <h3 class="tier__name">熟练</h3>
+          <span class="tier__count" data-count="16">0</span>
         </div>
-        <p class="tagcard__foot">※ 不接电话。<em>真的不接。</em></p>
+        <p class="tier__desc">能独立完成交付，踩过坑</p>
+        <ul class="tier__list">
+          <li>C++</li>
+          <li>C</li>
+          <li>TypeScript</li>
+          <li>React</li>
+          <li>Vue</li>
+          <li>Node.js</li>
+          <li>前端工程化</li>
+          <li>PostgreSQL</li>
+          <li>Kafka</li>
+          <li>Linux 服务器</li>
+          <li>Nginx</li>
+          <li>Docker</li>
+          <li>CI / CD</li>
+          <li>Git</li>
+          <li>AI 应用开发</li>
+          <li>LLM 接入与调优</li>
+        </ul>
+      </div>
+      <div class="tier tier--3" data-in>
+        <div class="tier__head">
+          <i class="lv lv--3"></i>
+          <h3 class="tier__name">会用</h3>
+          <span class="tier__count" data-count="12">0</span>
+        </div>
+        <p class="tier__desc">能做出来，但不敢说精通</p>
+        <ul class="tier__list">
+          <li>逆向工程</li>
+          <li>反编译 / 反汇编</li>
+          <li>动态调试</li>
+          <li>网络协议分析</li>
+          <li>抓包与还原</li>
+          <li>TCP / IP</li>
+          <li>WebSocket</li>
+          <li>Kubernetes</li>
+          <li>性能剖析</li>
+          <li>Elasticsearch</li>
+          <li>消息队列</li>
+          <li>Shell 脚本</li>
+        </ul>
+      </div>
+      <div class="tier tier--4" data-in>
+        <div class="tier__head">
+          <i class="lv lv--4"></i>
+          <h3 class="tier__name">了解</h3>
+          <span class="tier__count" data-count="10">0</span>
+        </div>
+        <p class="tier__desc">懂原理，还没有足够的实战</p>
+        <ul class="tier__list">
+          <li>Go</li>
+          <li>Rust</li>
+          <li>Python</li>
+          <li>底层内核</li>
+          <li>汇编</li>
+          <li>硬件 / 嵌入式</li>
+          <li>模型微调</li>
+          <li>向量检索</li>
+          <li>Service Mesh</li>
+          <li>大数据组件</li>
+        </ul>
+      </div>
+    </div>
+    <p class="matrix__note" data-in>
+      <span class="matrix__mk">※</span>
+      这份分级是自评。「了解」那一档不是谦虚，是真的还没写够。
+    </p>
+  </section>
+  <section class="sec" id="domains">
+    <header class="sec__head" data-in>
+      <span class="sec__num">02</span>
+      <h2 class="sec__title">专长领域</h2>
+      <p class="sec__sub">DOMAINS · 七个方向，从数据层到协议层</p>
+    </header>
+    <div class="domains">
+      <article class="domain" data-in data-tilt>
+        <div class="domain__glow" aria-hidden="true"></div>
+        <span class="domain__no">01</span>
+        <div class="domain__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3.5" width="18" height="7" rx="2"/><rect x="3" y="13.5" width="18" height="7" rx="2"/>
+            <path d="M7 7h.01M7 17h.01"/>
+          </svg>
+        </div>
+        <h3 class="domain__name">后端 / 服务端</h3>
+        <p class="domain__desc">
+          以 Java 生态为主力，做高并发、分布式与长生命周期的服务端系统。
+        </p>
+        <ul class="domain__tags">
+          <li>Java</li><li>Spring Boot</li><li>Spring Cloud</li><li>Netty</li>
+          <li>微服务</li><li>高并发</li><li>RESTful</li><li>JVM 调优</li>
+        </ul>
+      </article>
+      <article class="domain" data-in data-tilt>
+        <div class="domain__glow" aria-hidden="true"></div>
+        <span class="domain__no">02</span>
+        <div class="domain__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="4" width="19" height="14" rx="2"/><path d="M2.5 9h19M8 21h8"/>
+          </svg>
+        </div>
+        <h3 class="domain__name">前端 / Web</h3>
+        <p class="domain__desc">
+          从静态页面到复杂单页应用，注重交互细节与首屏性能，不把界面当附属品。
+        </p>
+        <ul class="domain__tags">
+          <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>TypeScript</li>
+          <li>React</li><li>Vue</li><li>响应式</li><li>动效</li>
+        </ul>
+      </article>
+      <article class="domain" data-in data-tilt>
+        <div class="domain__glow" aria-hidden="true"></div>
+        <span class="domain__no">03</span>
+        <div class="domain__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/>
+            <path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>
+          </svg>
+        </div>
+        <h3 class="domain__name">数据库</h3>
+        <p class="domain__desc">
+          表结构设计、索引策略、事务与锁、慢查询治理，以及缓存与存储的分层。
+        </p>
+        <ul class="domain__tags">
+          <li>MySQL</li><li>PostgreSQL</li><li>Redis</li><li>索引优化</li>
+          <li>事务 / 锁</li><li>分库分表</li><li>慢查询</li><li>Elasticsearch</li>
+        </ul>
+      </article>
+      <article class="domain" data-in data-tilt>
+        <div class="domain__glow" aria-hidden="true"></div>
+        <span class="domain__no">04</span>
+        <div class="domain__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3.5" width="18" height="6" rx="2"/><rect x="3" y="14.5" width="18" height="6" rx="2"/>
+            <path d="M7 6.5h.01M7 17.5h.01"/>
+          </svg>
+        </div>
+        <h3 class="domain__name">服务器 / 运维</h3>
+        <p class="domain__desc">
+          Linux 服务器从裸机到上线：部署、反代、容器化、流水线与线上问题排查。
+        </p>
+        <ul class="domain__tags">
+          <li>Linux</li><li>Nginx</li><li>Docker</li><li>Kubernetes</li>
+          <li>Shell</li><li>CI / CD</li><li>监控告警</li><li>日志治理</li>
+        </ul>
+      </article>
+      <article class="domain" data-in data-tilt>
+        <div class="domain__glow" aria-hidden="true"></div>
+        <span class="domain__no">05</span>
+        <div class="domain__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2.1 2.1M16.9 16.9L19 19M19 5l-2.1 2.1M7.1 16.9L5 19"/>
+          </svg>
+        </div>
+        <h3 class="domain__name">AI / LLM 工程</h3>
+        <p class="domain__desc">
+          把模型接进真实业务：检索增强、工具调用、结构化输出，以及 AI 辅助研发流程。
+        </p>
+        <ul class="domain__tags">
+          <li>LLM 接入</li><li>RAG</li><li>Agent</li><li>Prompt 工程</li>
+          <li>向量检索</li><li>函数调用</li><li>AI 辅助开发</li><li>工作流编排</li>
+        </ul>
+      </article>
+      <article class="domain" data-in data-tilt>
+        <div class="domain__glow" aria-hidden="true"></div>
+        <span class="domain__no">06</span>
+        <div class="domain__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 3.5v5L4.5 17a2.6 2.6 0 0 0 2.3 3.9h10.4A2.6 2.6 0 0 0 19.5 17L15 8.5v-5"/>
+            <path d="M8 3.5h8M7.5 14h9"/>
+          </svg>
+        </div>
+        <h3 class="domain__name">逆向工程</h3>
+        <p class="domain__desc">
+          把没有源码的东西看明白：反编译、动态调试、程序行为分析。
+        </p>
+        <ul class="domain__tags">
+          <li>反编译</li><li>反汇编</li><li>动态调试</li><li>断点追踪</li>
+          <li>加固分析</li><li>二进制分析</li><li>行为还原</li><li>汇编阅读</li>
+        </ul>
+      </article>
+      <article class="domain" data-in data-tilt>
+        <div class="domain__glow" aria-hidden="true"></div>
+        <span class="domain__no">07</span>
+        <div class="domain__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="19" r="2.2"/><circle cx="19" cy="19" r="2.2"/>
+            <path d="M12 7.2v4.3M12 11.5L6.4 17.3M12 11.5l5.6 5.8"/>
+          </svg>
+        </div>
+        <h3 class="domain__name">网络通信</h3>
+        <p class="domain__desc">
+          协议层的理解与还原：抓包分析、报文结构、通信流程与自定义协议设计。
+        </p>
+        <ul class="domain__tags">
+          <li>TCP / IP</li><li>HTTP / 2</li><li>WebSocket</li><li>抓包分析</li>
+          <li>协议还原</li><li>报文解析</li><li>长连接</li><li>加密通信</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+  <section class="sec" id="ai">
+    <header class="sec__head" data-in>
+      <span class="sec__num">03</span>
+      <h2 class="sec__title">AI 工程</h2>
+      <p class="sec__sub">AI ENGINEERING · 模型是工具，交付才是目的</p>
+    </header>
+    <div class="ai">
+      <div class="ai__main" data-in>
+        <p class="ai__lead">
+          把大模型当作工程组件来用 —— 不只是聊天，而是接进系统、约束输出、纳入流程。
+        </p>
+        <div class="ai__cols">
+          <div class="ai__col">
+            <h3 class="subhead">应用层</h3>
+            <ul class="tick">
+              <li>检索增强生成（RAG）与知识库</li>
+              <li>工具调用 / 函数调用编排</li>
+              <li>结构化输出与结果校验</li>
+              <li>多轮上下文与状态管理</li>
+              <li>流式响应与前端集成</li>
+            </ul>
+          </div>
+          <div class="ai__col">
+            <h3 class="subhead">研发流程</h3>
+            <ul class="tick">
+              <li>AI 辅助编码与重构</li>
+              <li>自动化代码审查与补全</li>
+              <li>把 AI 接进 CI / 本地工作流</li>
+              <li>提示词工程与效果迭代</li>
+              <li>多模型并行对比与选型</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <aside class="ai__side" data-in>
+        <h3 class="subhead">日常在用</h3>
+        <div class="agents">
+          <div class="agent">
+            <span class="agent__dot" style="--c:#a9c4ff"></span>
+            <b>Codex</b>
+            <small>代码生成与批量改造</small>
+          </div>
+          <div class="agent">
+            <span class="agent__dot" style="--c:#ff9ed4"></span>
+            <b>Claude</b>
+            <small>长上下文理解与重构</small>
+          </div>
+          <div class="agent">
+            <span class="agent__dot" style="--c:#b18cff"></span>
+            <b>DeepSeek</b>
+            <small>工程实现与日常开发</small>
+          </div>
+          <div class="agent">
+            <span class="agent__dot" style="--c:#9ff0dc"></span>
+            <b>自建工作流</b>
+            <small>串起模型与本地工具链</small>
+          </div>
+        </div>
+        <p class="ai__note">
+          模型在换代，工程判断力不会。选型、拆解、验收这几步始终是人做的。
+        </p>
       </aside>
     </div>
   </section>
-
-
-  <!-- ============================================================
-       技能
-       ============================================================ -->
-  <section class="sec" id="skills">
-    <header class="sec__head" data-in>
-      <span class="sec__num">04</span>
-      <h2 class="sec__title">技能</h2>
-      <p class="sec__sub">SKILLS · 数字而已，不必当真</p>
-    </header>
-
-    <div class="skills">
-      <div class="skills__bars" data-in>
-        <div class="skill" data-lv="95">
-          <div class="skill__top"><span>Java / Spring 生态</span><b>95</b></div>
-          <div class="skill__track"><i style="--c1:#9d7bff;--c2:#eef0ff"></i></div>
-        </div>
-        <div class="skill" data-lv="91">
-          <div class="skill__top"><span>C++ / 系统级开发</span><b>91</b></div>
-          <div class="skill__track"><i style="--c1:#7c5cff;--c2:#a9c4ff"></i></div>
-        </div>
-        <div class="skill" data-lv="93">
-          <div class="skill__top"><span>分布式 / 微服务架构</span><b>93</b></div>
-          <div class="skill__track"><i style="--c1:#6f8dff;--c2:#c9b6ff"></i></div>
-        </div>
-        <div class="skill" data-lv="88">
-          <div class="skill__top"><span>Web 全栈 / 前端工程</span><b>88</b></div>
-          <div class="skill__track"><i style="--c1:#b18cff;--c2:#ff9ed4"></i></div>
-        </div>
-        <div class="skill" data-lv="89">
-          <div class="skill__top"><span>数据库 / 缓存 / 中间件</span><b>89</b></div>
-          <div class="skill__track"><i style="--c1:#6a45e8;--c2:#b18cff"></i></div>
-        </div>
-        <div class="skill" data-lv="85">
-          <div class="skill__top"><span>云原生 / DevOps</span><b>85</b></div>
-          <div class="skill__track"><i style="--c1:#54418c;--c2:#9d7bff"></i></div>
-        </div>
-        <div class="skill skill--secret" data-lv="2">
-          <div class="skill__top"><span>寒暄能力</span><b>2</b></div>
-          <div class="skill__track"><i style="--c1:#ff9ed4;--c2:#ffc2e2"></i></div>
-        </div>
-      </div>
-
-      <div class="skills__right" data-in>
-        <h3 class="subhead">工具</h3>
-        <div class="tools">
-          <span>Java</span><span>Spring Boot</span><span>Spring Cloud</span>
-          <span>C++</span><span>C</span><span>TypeScript</span><span>JavaScript</span>
-          <span>React</span><span>Vue</span><span>HTML5</span><span>CSS3</span>
-          <span>MySQL</span><span>PostgreSQL</span><span>Redis</span><span>Kafka</span>
-          <span>Docker</span><span>Kubernetes</span><span>Nginx</span><span>Linux</span>
-          <span>Git</span><span>CI / CD</span><span>JVM 调优</span><span>性能剖析</span>
-        </div>
-
-        <h3 class="subhead">底层那点事</h3>
-        <div class="minis">
-          <div class="mini"><b>JVM</b><span>GC / 内存模型 / 字节码</span></div>
-          <div class="mini"><b>并发</b><span>线程模型 / 锁优化 / 无锁结构</span></div>
-          <div class="mini"><b>设计</b><span>DDD / 事件驱动 / 服务治理</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       作品
-       ============================================================ -->
   <section class="sec" id="works">
     <header class="sec__head" data-in>
-      <span class="sec__num">05</span>
+      <span class="sec__num">04</span>
       <h2 class="sec__title">作品</h2>
-      <p class="sec__sub">WORKS · 挑了几个能看的</p>
+      <p class="sec__sub">WORKS · 覆盖后端、系统、全栈、AI、逆向</p>
     </header>
-
     <div class="works">
       <article class="work" data-in data-tilt>
         <div class="work__glow" aria-hidden="true"></div>
         <header class="work__head">
-          <span class="work__tag">Java · 分布式</span>
+          <span class="work__tag">Java · 后端</span>
           <span class="work__no">01</span>
         </header>
-        <h3 class="work__name">RavenGate<small>高并发网关</small></h3>
+        <h3 class="work__name">RavenGate<small>高并发 API 网关</small></h3>
         <p class="work__desc">
-          自研 API 网关：动态路由、限流熔断、灰度发布、全链路追踪。
+          自研网关：动态路由、限流熔断、灰度发布、全链路追踪。
           单机压测稳定承载万级 QPS，P99 压到个位数毫秒。
         </p>
         <ul class="work__list">
@@ -502,7 +510,6 @@
         </ul>
         <footer class="work__foot"><span>Netty</span><span>Spring Boot</span><span>Redis</span><span>Prometheus</span></footer>
       </article>
-
       <article class="work" data-in data-tilt>
         <div class="work__glow" aria-hidden="true"></div>
         <header class="work__head">
@@ -521,7 +528,6 @@
         </ul>
         <footer class="work__foot"><span>C++20</span><span>CMake</span><span>Lock-free</span><span>mmap</span></footer>
       </article>
-
       <article class="work" data-in data-tilt>
         <div class="work__glow" aria-hidden="true"></div>
         <header class="work__head">
@@ -536,11 +542,10 @@
         <ul class="work__list">
           <li>CRDT 无冲突复制数据类型</li>
           <li>增量 diff 同步 + 本地乐观更新</li>
-          <li>离线优先与自动重连</li>
+          <li>离线优先与断线重连</li>
         </ul>
         <footer class="work__foot"><span>TypeScript</span><span>React</span><span>WebSocket</span><span>Node.js</span></footer>
       </article>
-
       <article class="work" data-in data-tilt>
         <div class="work__glow" aria-hidden="true"></div>
         <header class="work__head">
@@ -559,34 +564,62 @@
         </ul>
         <footer class="work__foot"><span>Spring Cloud</span><span>Nacos</span><span>K8s</span><span>SkyWalking</span></footer>
       </article>
+      <article class="work" data-in data-tilt>
+        <div class="work__glow" aria-hidden="true"></div>
+        <header class="work__head">
+          <span class="work__tag">AI · 检索</span>
+          <span class="work__no">05</span>
+        </header>
+        <h3 class="work__name">Lumen<small>企业知识库问答</small></h3>
+        <p class="work__desc">
+          基于 RAG 的内部知识问答系统：文档切分、向量检索、重排序与引用溯源，
+          答案必须带出处，不允许模型自由发挥。
+        </p>
+        <ul class="work__list">
+          <li>多格式文档解析与分块策略</li>
+          <li>混合检索（向量 + 关键词）</li>
+          <li>引用回链与置信度过滤</li>
+        </ul>
+        <footer class="work__foot"><span>RAG</span><span>向量库</span><span>LLM API</span><span>Python</span></footer>
+      </article>
+      <article class="work" data-in data-tilt>
+        <div class="work__glow" aria-hidden="true"></div>
+        <header class="work__head">
+          <span class="work__tag">逆向 · 网络</span>
+          <span class="work__no">06</span>
+        </header>
+        <h3 class="work__name">Specter<small>通信协议分析工具</small></h3>
+        <p class="work__desc">
+          面向自定义二进制协议的抓包与解析工具：自动识别字段边界、
+          还原通信时序，把难以阅读的报文变成结构化的可查数据。
+        </p>
+        <ul class="work__list">
+          <li>报文结构推断与字段标注</li>
+          <li>通信时序还原与会话重组</li>
+          <li>协议模板复用与导出</li>
+        </ul>
+        <footer class="work__foot"><span>C++</span><span>Python</span><span>pcap</span><span>TCP</span></footer>
+      </article>
     </div>
   </section>
-
-
-  <!-- ============================================================
-       联系
-       ============================================================ -->
   <section class="sec" id="contact">
     <header class="sec__head" data-in>
-      <span class="sec__num">06</span>
-      <h2 class="sec__title">找我</h2>
-      <p class="sec__sub">CONTACT · 请发文字，不要打电话</p>
+      <span class="sec__num">05</span>
+      <h2 class="sec__title">联系</h2>
+      <p class="sec__sub">CONTACT · 说明来意即可</p>
     </header>
-
     <div class="contact" data-in>
       <div class="contact__left">
-        <h3 class="contact__h">合作可以。<span class="cold">寒暄不必。</span></h3>
+        <h3 class="contact__h">技术合作、项目外包、远程岗位，都可以谈。</h3>
         <p class="contact__p">
-          技术合作、项目外包、远程岗位都可以谈。
-          我回得可能不快 —— 不是因为不想理你，是因为我在想怎么回才不算失礼。
+          请直接说明需求、周期和预期，我通常会在 24 小时内回复。
+          如果涉及具体技术方案，附上背景信息会快很多。
         </p>
         <div class="contact__warn">
-          <span aria-hidden="true">⚠</span>
-          语音、电话、突然的视频邀请：一律不接。文字聊，谢谢。
+          <span aria-hidden="true">※</span>
+          比起电话，文字沟通效率更高。急事请直接写清楚。
         </div>
-        <p class="contact__dere">……但你真的发了，我也是会看的。</p>
       </div>
-
       <div class="contact__links">
         <a class="lnk" href="https://github.com/YuDu-Yaye" target="_blank" rel="noopener noreferrer">
           <span class="lnk__ico">
@@ -595,7 +628,6 @@
           <span class="lnk__txt"><b>GitHub</b><small>github.com/YuDu-Yaye</small></span>
           <span class="lnk__go" aria-hidden="true">→</span>
         </a>
-
         <a class="lnk" href="mailto:yudu.yaye@outlook.com">
           <span class="lnk__ico">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4.5 8 7.5 5.5L19.5 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -603,7 +635,6 @@
           <span class="lnk__txt"><b>Email</b><small>yudu.yaye@outlook.com</small></span>
           <span class="lnk__go" aria-hidden="true">→</span>
         </a>
-
         <button class="lnk lnk--btn" type="button" data-copy="yudu_raven_night">
           <span class="lnk__ico">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 10.5a4 4 0 0 1 4-4h3.5a4 4 0 0 1 0 8H14"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M16 13.5a4 4 0 0 1-4 4H8.5a4 4 0 0 1 0-8H10"/></svg>
@@ -614,10 +645,7 @@
       </div>
     </div>
   </section>
-
 </main>
-
-
 <footer class="footer">
   <div class="footer__inner">
     <div class="footer__brand">
@@ -634,16 +662,14 @@
       </div>
     </div>
     <p class="footer__copy">
-      © <span id="year">2026</span> 羽渡鸦夜 · Built in the cold, with warm hands.<br />
-      <span class="soft">看到这里了……哼，随你。</span>
+      © <span id="year">2026</span> 羽渡鸦夜 · Yudu Raven Night<br />
+      <span class="soft">全栈工程 · 后端 / 前端 / 数据库 / 服务器 / AI / 逆向 / 网络</span>
     </p>
   </div>
 </footer>
-
 <a class="totop" id="toTop" href="#top" aria-label="回到顶部">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M6 12l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
-
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>

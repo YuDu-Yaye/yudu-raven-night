@@ -1,8 +1,5 @@
-/* ============================================================
-   羽渡鸦夜 · 冰山之下
-   交互脚本 · 原生 JS，零依赖
-   冷是外壳，「融冰」是内核
-   ============================================================ */
+
+
 (function () {
   'use strict';
 
@@ -12,10 +9,6 @@
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
-
-  /* ----------------------------------------------------------
-     1. 冰晶粒子
-     ---------------------------------------------------------- */
   function initFrost() {
     var cv = $('#frost');
     if (!cv || reduce) return;
@@ -46,17 +39,16 @@
           y: Math.random() * h,
           r: Math.random() * 1.5 + 0.5,
           vx: (Math.random() - 0.5) * 0.14,
-          vy: Math.random() * 0.26 + 0.05,       /* 缓缓下沉，像落雪 */
+          vy: Math.random() * 0.26 + 0.05,
           a: Math.random() * 0.4 + 0.22,
           tw: Math.random() * Math.PI * 2,
           tws: Math.random() * 0.018 + 0.004,
           c: HUE[(Math.random() * HUE.length) | 0],
-          crystal: Math.random() < 0.3            /* 一部分画成冰晶 */
+          crystal: Math.random() < 0.3
         });
       }
     }
 
-    /* 六角冰晶 */
     function crystal(x, y, r, color, alpha) {
       ctx.save();
       ctx.translate(x, y);
@@ -68,7 +60,6 @@
         var ex = Math.cos(ang) * r, ey = Math.sin(ang) * r;
         ctx.moveTo(0, 0);
         ctx.lineTo(ex, ey);
-        /* 侧枝 */
         var bx = Math.cos(ang) * r * 0.6, by = Math.sin(ang) * r * 0.6;
         ctx.moveTo(bx, by);
         ctx.lineTo(bx + Math.cos(ang + 1.05) * r * 0.32, by + Math.sin(ang + 1.05) * r * 0.32);
@@ -150,20 +141,17 @@
     raf = requestAnimationFrame(draw);
   }
 
-
-  /* ----------------------------------------------------------
-     2. 打字机：冷句式
-     ---------------------------------------------------------- */
   function initTyper() {
     var el = $('#typer');
     if (!el) return;
 
     var LINES = [
-      '后端架构。',
-      'Java / 高并发。',
-      'C++ / 系统层。',
-      '全栈，也能做。',
-      '以及——安静地写代码。'
+      '后端架构 / Java 生态',
+      '前端 / 全栈 Web',
+      '数据库设计与优化',
+      '服务器 / 运维部署',
+      'AI / LLM 工程',
+      '逆向工程 / 网络通信'
     ];
 
     if (reduce) { el.textContent = LINES[0]; return; }
@@ -177,32 +165,28 @@
 
       var wait;
       if (!del) {
-        if (ci < cur.length) { ci++; wait = 92 + Math.random() * 76; }
-        else { del = true; wait = 1900; }
+        if (ci < cur.length) { ci++; wait = 88 + Math.random() * 74; }
+        else { del = true; wait = 2000; }
       } else {
-        if (ci > 0) { ci--; wait = 40; }
-        else { del = false; li = (li + 1) % chars.length; wait = 360; }
+        if (ci > 0) { ci--; wait = 38; }
+        else { del = false; li = (li + 1) % chars.length; wait = 340; }
       }
       setTimeout(tick, wait);
     }
 
-    setTimeout(tick, 800);
+    setTimeout(tick, 700);
   }
 
-
-  /* ----------------------------------------------------------
-     3. 吉祥物台词：冷 → 慢慢漏出软
-     ---------------------------------------------------------- */
   function initMascotLines() {
     var el = $('#mascotLine');
     if (!el || reduce) return;
 
     var LINES = [
-      '……别盯着看。',
-      '有事说事。',
-      '我不太会聊天，先说好。',
-      '（……其实你可以多待一会儿。）',
-      '哼，随你。'
+      '在写代码。',
+      '在看日志。',
+      '在改配置。',
+      '在查协议。',
+      '在跑测试。'
     ];
 
     var i = 0;
@@ -215,88 +199,9 @@
         el.textContent = LINES[i];
         el.style.opacity = '1';
       }, 300);
-    }, 5600);
+    }, 6200);
   }
 
-
-  /* ----------------------------------------------------------
-     4. 融冰
-     ---------------------------------------------------------- */
-  function initMelt() {
-    var melt = $('#melt');
-    var btn = $('#meltBtn');
-    if (!melt || !btn) return;
-
-    var txt = $('.melt__btn-txt', btn);
-
-    function set(open) {
-      melt.classList.toggle('is-open', open);
-      btn.setAttribute('aria-pressed', open ? 'true' : 'false');
-      if (txt) txt.textContent = open ? '把手放回去' : '敲开冰面';
-
-      if (open) {
-        /* 冰化开的时候，星星也软一下 */
-        sparkle(btn);
-      }
-    }
-
-    btn.addEventListener('click', function () {
-      set(!melt.classList.contains('is-open'));
-    });
-
-    /* 第一次滚到视野里，冰面自己裂一下，提示可以点 */
-    if (!reduce && 'IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) {
-          if (!e.isIntersecting) return;
-          melt.classList.add('is-teasing');
-          setTimeout(function () { melt.classList.remove('is-teasing'); }, 2400);
-          io.disconnect();
-        });
-      }, { threshold: 0.35 });
-      io.observe(melt);
-    }
-  }
-
-  /* 在元素位置撒一把光点 */
-  function sparkle(el) {
-    if (reduce) return;
-    var r = el.getBoundingClientRect();
-    var cx = r.left + r.width / 2;
-    var cy = r.top + r.height / 2;
-
-    for (var i = 0; i < 10; i++) {
-      (function (k) {
-        var s = document.createElement('span');
-        s.textContent = '✦';
-        s.setAttribute('aria-hidden', 'true');
-        s.style.cssText =
-          'position:fixed;left:' + (cx + (Math.random() - 0.5) * r.width) + 'px;' +
-          'top:' + cy + 'px;' +
-          'font-size:' + (9 + Math.random() * 11) + 'px;' +
-          'color:' + (Math.random() < 0.5 ? '#a9c4ff' : '#ff9ed4') + ';' +
-          'pointer-events:none;z-index:9999;opacity:1;' +
-          'transition:transform 1.2s cubic-bezier(.16,1,.3,1),opacity 1.2s ease;';
-        document.body.appendChild(s);
-
-        requestAnimationFrame(function () {
-          s.style.transform =
-            'translate(' + ((Math.random() - 0.5) * 160) + 'px,' +
-            (-50 - Math.random() * 90) + 'px) scale(1.5) rotate(' + ((Math.random() - 0.5) * 180) + 'deg)';
-          s.style.opacity = '0';
-        });
-
-        setTimeout(function () {
-          if (s.parentNode) s.parentNode.removeChild(s);
-        }, 1300 + k * 60);
-      })(i);
-    }
-  }
-
-
-  /* ----------------------------------------------------------
-     5. 入场
-     ---------------------------------------------------------- */
   function initReveal() {
     var items = $$('[data-in]');
     if (!items.length) return;
@@ -312,7 +217,7 @@
         var el = entry.target;
         var sibs = el.parentElement ? $$('[data-in]', el.parentElement) : [];
         var i = sibs.indexOf(el);
-        var delay = i > 0 ? Math.min(i * 60, 300) : 0;
+        var delay = i > 0 ? Math.min(i * 70, 340) : 0;
 
         setTimeout(function () { el.classList.add('is-in'); }, delay);
         io.unobserve(el);
@@ -322,19 +227,15 @@
     items.forEach(function (el) { io.observe(el); });
   }
 
-
-  /* ----------------------------------------------------------
-     6. 数值
-     ---------------------------------------------------------- */
-  function initCounters() {
-    var list = $$('.count');
+  function initTierCounts() {
+    var list = $$('.tier__count');
     if (!list.length) return;
 
     function run(el) {
-      var target = parseFloat(el.getAttribute('data-to')) || 0;
+      var target = parseFloat(el.getAttribute('data-count')) || 0;
       if (reduce) { el.textContent = String(target); return; }
 
-      var dur = 1500, start = null;
+      var dur = 1100, start = null;
       function step(ts) {
         if (start === null) start = ts;
         var p = Math.min((ts - start) / dur, 1);
@@ -348,54 +249,17 @@
     if (!('IntersectionObserver' in window)) { list.forEach(run); return; }
 
     var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
+      es.forEach(function (e, i) {
         if (!e.isIntersecting) return;
-        run(e.target);
-        io.unobserve(e.target);
+        var el = e.target;
+        setTimeout(function () { run(el); }, i * 110);
+        io.unobserve(el);
       });
-    }, { threshold: 0.6 });
+    }, { threshold: 0.5 });
 
     list.forEach(function (c) { io.observe(c); });
   }
 
-  function initBars() {
-    var targets = $$('.stat').map(function (s) {
-      return { el: s, v: parseFloat(s.getAttribute('data-val')) || 0, bar: $('.stat__bar i', s) };
-    }).concat($$('.skill').map(function (s) {
-      return { el: s, v: parseFloat(s.getAttribute('data-lv')) || 0, bar: $('.skill__track i', s) };
-    })).filter(function (o) { return o.bar; });
-
-    if (!targets.length) return;
-
-    function fill(o) {
-      o.bar.style.setProperty('--w', o.v + '%');
-      requestAnimationFrame(function () {
-        setTimeout(function () { o.bar.style.width = o.v + '%'; }, 70);
-      });
-    }
-
-    if (reduce || !('IntersectionObserver' in window)) {
-      targets.forEach(fill);
-      return;
-    }
-
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e, i) {
-        if (!e.isIntersecting) return;
-        var o = targets.filter(function (t) { return t.el === e.target; })[0];
-        if (!o) return;
-        setTimeout(function () { fill(o); }, i * 85);
-        io.unobserve(e.target);
-      });
-    }, { threshold: 0.4 });
-
-    targets.forEach(function (o) { io.observe(o.el); });
-  }
-
-
-  /* ----------------------------------------------------------
-     7. 导航
-     ---------------------------------------------------------- */
   function initNav() {
     var nav = $('#nav');
     var burger = $('#navBurger');
@@ -455,10 +319,6 @@
     secs.forEach(function (s) { io.observe(s); });
   }
 
-
-  /* ----------------------------------------------------------
-     8. 指针
-     ---------------------------------------------------------- */
   function initPointer() {
     if (reduce || window.matchMedia('(hover: none)').matches) return;
 
@@ -483,7 +343,6 @@
       })();
     }
 
-    /* 作品卡：很轻微的倾斜，冷得不动声色 */
     $$('[data-tilt]').forEach(function (card) {
       var MAX = 4;
 
@@ -506,10 +365,6 @@
     });
   }
 
-
-  /* ----------------------------------------------------------
-     9. 进度 + 回顶
-     ---------------------------------------------------------- */
   function initWidgets() {
     var bar = $('#progress');
     var top = $('#toTop');
@@ -533,10 +388,6 @@
     update();
   }
 
-
-  /* ----------------------------------------------------------
-     10. 复制
-     ---------------------------------------------------------- */
   function initCopy() {
     $$('[data-copy]').forEach(function (el) {
       el.addEventListener('click', function (e) {
@@ -581,71 +432,21 @@
     });
   }
 
-
-  /* ----------------------------------------------------------
-     11. 双击彩蛋：冰面下的粉
-     ---------------------------------------------------------- */
-  function initEasterEgg() {
-    if (reduce) return;
-
-    document.addEventListener('dblclick', function (e) {
-      if (e.target.closest('a, button, input, textarea')) return;
-
-      for (var i = 0; i < 6; i++) {
-        (function (k) {
-          var s = document.createElement('span');
-          s.textContent = Math.random() < 0.5 ? '♥' : '✦';
-          s.setAttribute('aria-hidden', 'true');
-          s.style.cssText =
-            'position:fixed;left:' + (e.clientX + (Math.random() - 0.5) * 40) + 'px;' +
-            'top:' + e.clientY + 'px;' +
-            'font-size:' + (11 + Math.random() * 13) + 'px;' +
-            'color:' + (Math.random() < 0.6 ? '#ff9ed4' : '#a9c4ff') + ';' +
-            'pointer-events:none;z-index:9999;' +
-            'transition:transform 1.3s cubic-bezier(.16,1,.3,1),opacity 1.3s ease;';
-          document.body.appendChild(s);
-
-          requestAnimationFrame(function () {
-            s.style.transform =
-              'translate(' + ((Math.random() - 0.5) * 110) + 'px,' +
-              (-80 - Math.random() * 80) + 'px) rotate(' + ((Math.random() - 0.5) * 120) + 'deg) scale(1.4)';
-            s.style.opacity = '0';
-          });
-
-          setTimeout(function () {
-            if (s.parentNode) s.parentNode.removeChild(s);
-          }, 1400 + k * 70);
-        })(i);
-      }
-    });
-  }
-
-
-  /* ----------------------------------------------------------
-     12. 年份
-     ---------------------------------------------------------- */
   function initYear() {
     var y = $('#year');
     if (y) y.textContent = String(new Date().getFullYear());
   }
 
-
-  /* ----------------------------------------------------------
-     启动
-     ---------------------------------------------------------- */
   function boot() {
     initFrost();
     initTyper();
     initMascotLines();
-    initMelt();
     initReveal();
-    initCounters();
-    initBars();
+    initTierCounts();
     initNav();
     initPointer();
     initWidgets();
     initCopy();
-    initEasterEgg();
     initYear();
   }
 
