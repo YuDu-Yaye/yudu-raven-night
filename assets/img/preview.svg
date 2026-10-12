@@ -62,7 +62,7 @@
         font-size="12.5" letter-spacing="7.4" fill="#7d7fa8">YUDU RAVEN NIGHT</text>
   <rect x="220" y="184" width="330" height="1" fill="url(#accent)" fill-opacity=".5"/>
   <text x="220" y="210" font-family="Inter, 'PingFang SC', sans-serif"
-        font-size="14" fill="#b6b9dd">后端 · 前端 · 数据库 · 服务器 · AI · 逆向 · 网络通信</text>
+        font-size="14" fill="#b6b9dd">后端 · 前端 · 数据库 · 服务器 · AI · 逆向 · 网络 · CAD · 剪辑</text>
   <text x="220" y="240" font-family="Inter, 'PingFang SC', sans-serif"
         font-size="12.5" fill="#a9c4ff" fill-opacity=".9">精通 / 熟练 / 会用 / 了解 —— 四级如实标注</text>
   <text x="960" y="276" text-anchor="end" font-family="Consolas, monospace"

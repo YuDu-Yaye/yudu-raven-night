@@ -151,7 +151,9 @@
       '数据库设计与优化',
       '服务器 / 运维部署',
       'AI / LLM 工程',
-      '逆向工程 / 网络通信'
+      '逆向工程 / 网络通信',
+      'Inventor 建模 / CAD',
+      '视频剪辑 / 后期'
     ];
 
     if (reduce) { el.textContent = LINES[0]; return; }
