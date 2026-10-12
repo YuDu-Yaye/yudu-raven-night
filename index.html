@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>羽渡鸦夜 · 冰山之下，请勿靠近（除非你很想）</title>
+
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+
+<meta name="description" content="羽渡鸦夜 —— 中国的 Java / C++ / 全栈开发者。看上去很冷，其实……不，没什么。" />
+<meta name="author" content="羽渡鸦夜" />
+<meta name="theme-color" content="#07050f" />
+
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="羽渡鸦夜 · 冰山之下" />
+<meta property="og:description" content="Java / C++ / 全栈。别盯着看，我会……没什么。" />
+<meta property="og:locale" content="zh_CN" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0718'/%3E%3Cg stroke='%23a9c4ff' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M32 12v40M15 22l34 20M49 22L15 42'/%3E%3Cpath d='M32 20l-7-6M32 20l7-6M32 44l-7 6M32 44l7 6'/%3E%3C/g%3E%3C/svg%3E" />
+
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<a class="skip" href="#about">跳到正文</a>
+
+<!-- ============ 冰原背景 ============ -->
+<div class="bg" aria-hidden="true">
+  <div class="bg__wash"></div>
+  <div class="bg__aurora">
+    <span class="glow glow--a"></span>
+    <span class="glow glow--b"></span>
+    <span class="glow glow--c"></span>
+  </div>
+  <canvas id="frost"></canvas>
+  <div class="bg__cracks"></div>
+  <div class="bg__vig"></div>
+</div>
+
+<div class="pointer-ice" id="pointerIce" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+
+<!-- ============ 导航 ============ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#top" aria-label="回到顶部">
+      <span class="brand__crystal" aria-hidden="true">
+        <svg viewBox="0 0 48 48">
+          <g stroke="url(#cg)" stroke-width="2.2" stroke-linecap="round" fill="none">
+            <path d="M24 6v36M10 15l28 18M38 15L10 33"/>
+            <path d="M24 12l-5-4M24 12l5-4M24 36l-5 4M24 36l5 4M14 20l-6-1M34 20l6-1M14 28l-6 1M34 28l6 1"/>
+          </g>
+          <defs>
+            <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#eef0ff"/>
+              <stop offset="55%" stop-color="#a9c4ff"/>
+              <stop offset="100%" stop-color="#b18cff"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <span class="brand__txt">
+        <strong>羽渡鸦夜</strong>
+        <small>YUDU RAVEN NIGHT</small>
+      </span>
+    </a>
+
+    <nav class="nav__links" aria-label="主导航">
+      <a href="#dual">表与里</a>
+      <a href="#about">关于</a>
+      <a href="#skills">技能</a>
+      <a href="#works">作品</a>
+      <a href="#contact">找我</a>
+    </nav>
+
+    <a class="btn btn--line nav__cta" href="#contact">预约联系</a>
+
+    <button class="nav__burger" id="navBurger" aria-label="打开菜单" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <a href="#dual">表与里</a>
+  <a href="#about">关于</a>
+  <a href="#skills">技能</a>
+  <a href="#works">作品</a>
+  <a href="#contact">找我</a>
+</div>
+
+
+<main id="top">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero__grid">
+
+      <!-- 吉祥物 -->
+      <div class="hero__side" data-in>
+        <div class="mascot">
+          <div class="mascot__aura"></div>
+          <svg class="mascot__svg" viewBox="0 0 220 240" role="img" aria-label="一只看上去很冷的紫色小乌鸦，但脸颊是红的">
+            <defs>
+              <radialGradient id="bd" cx="36%" cy="28%" r="80%">
+                <stop offset="0%"   stop-color="#6a55a8"/>
+                <stop offset="52%"  stop-color="#3d2d70"/>
+                <stop offset="100%" stop-color="#241a4a"/>
+              </radialGradient>
+              <linearGradient id="wg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%"   stop-color="#54418c"/>
+                <stop offset="100%" stop-color="#2c2054"/>
+              </linearGradient>
+              <linearGradient id="ic" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%"   stop-color="#eef0ff"/>
+                <stop offset="60%"  stop-color="#a9c4ff"/>
+                <stop offset="100%" stop-color="#b18cff"/>
+              </linearGradient>
+              <linearGradient id="bk" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#ffc46b"/>
+                <stop offset="100%" stop-color="#ff9f3d"/>
+              </linearGradient>
+            </defs>
+
+            <!-- 冰晶王冠 -->
+            <g class="mascot__crown" stroke="url(#ic)" stroke-width="3" stroke-linecap="round" fill="none">
+              <path d="M110 30v-14M110 24l-9-8M110 24l9-8M110 32l-6 5M110 32l6 5"/>
+            </g>
+
+            <!-- 身体 -->
+            <ellipse cx="110" cy="168" rx="57" ry="49" fill="url(#bd)"/>
+            <circle cx="110" cy="112" r="50" fill="url(#bd)"/>
+
+            <!-- 翅膀：收得很紧（防备姿态） -->
+            <ellipse class="mascot__wing mascot__wing--l" cx="56" cy="168" rx="14" ry="27"
+                     fill="url(#wg)" transform="rotate(-8 56 168)"/>
+            <ellipse class="mascot__wing mascot__wing--r" cx="164" cy="168" rx="14" ry="27"
+                     fill="url(#wg)" transform="rotate(8 164 168)"/>
+
+            <!-- 脚 -->
+            <path d="M93 212q-8 10-14 8M93 212q0 11-6 13" stroke="url(#bk)" stroke-width="4"
+                  stroke-linecap="round" fill="none"/>
+            <path d="M127 212q8 10 14 8M127 212q0 11 6 13" stroke="url(#bk)" stroke-width="4"
+                  stroke-linecap="round" fill="none"/>
+
+            <!-- 眼：半眯（高冷） -->
+            <g class="mascot__eyes">
+              <path class="mascot__lid" d="M76 110q14-9 28 0" stroke="#241a4a" stroke-width="0" fill="none"/>
+              <ellipse cx="90" cy="109" rx="12.5" ry="14.5" fill="#fff"/>
+              <ellipse cx="130" cy="109" rx="12.5" ry="14.5" fill="#fff"/>
+              <circle class="mascot__pupil" cx="92" cy="111" r="7.6" fill="#241a4a"/>
+              <circle class="mascot__pupil" cx="132" cy="111" r="7.6" fill="#241a4a"/>
+              <circle cx="95" cy="106.5" r="3" fill="#fff"/>
+              <circle cx="135" cy="106.5" r="3" fill="#fff"/>
+            </g>
+            <!-- 眼睑：半眯，冷 -->
+            <g class="mascot__lashes" fill="#3d2d70">
+              <path d="M76 104h29l-2 4H76z"/>
+              <path d="M115 104h29l-2 4h-27z"/>
+            </g>
+
+            <!-- 腮红：藏不住的部分 -->
+            <ellipse class="mascot__blush" cx="69" cy="129" rx="12" ry="7" fill="#ff9ecb" opacity=".5"/>
+            <ellipse class="mascot__blush" cx="151" cy="129" rx="12" ry="7" fill="#ff9ecb" opacity=".5"/>
+
+            <!-- 喙 -->
+            <path d="M110 126l-8 7.6l8 6.4l8-6.4z" fill="url(#bk)"/>
+            <path d="M110 126l-8 7.6h16z" fill="#ffb347"/>
+          </svg>
+
+          <span class="mascot__bit mascot__bit--1">✦</span>
+          <span class="mascot__bit mascot__bit--2">❄</span>
+          <span class="mascot__bit mascot__bit--3">✧</span>
+        </div>
+
+        <div class="coldnote" data-in>
+          <p id="mascotLine">……别盯着看。</p>
+        </div>
+      </div>
+
+      <!-- 文案 -->
+      <div class="hero__copy">
+        <p class="kicker" data-in>
+          <span class="kicker__line"></span>
+          中国 · CHINA
+          <span class="kicker__sep">/</span>
+          <span class="kicker__status">现在：一个人待着</span>
+        </p>
+
+        <h1 class="hero__name" data-in>
+          <span class="hero__cn">羽渡鸦夜</span>
+          <span class="hero__en">YUDU RAVEN NIGHT</span>
+        </h1>
+
+        <p class="hero__rule" data-in><i></i></p>
+
+        <p class="hero__lead" data-in>
+          冰山美人。至少别人是这么说的。<br />
+          <span class="cold">话少，不爱解释，讨厌被围观。</span>
+        </p>
+
+        <h2 class="hero__role" data-in>
+          <span class="hero__role-k">职业</span>
+          <span class="typer" id="typer" aria-live="polite"></span><span class="caret" aria-hidden="true"></span>
+        </h2>
+
+        <p class="hero__desc" data-in>
+          <b>Java</b> 后端、<b>C++</b> 系统、前端全栈。
+          写得慢，但很少返工；不爱说话，但代码会替我说完。
+        </p>
+
+        <div class="hero__btns" data-in>
+          <a class="btn btn--solid" href="#works">
+            <span>看作品</span>
+            <span class="btn__a">→</span>
+          </a>
+          <a class="btn btn--line" href="#contact">……联系我</a>
+        </div>
+
+        <ul class="hero__meta" data-in>
+          <li><b>Java</b><span>后端 / 架构</span></li>
+          <li><b>C++</b><span>系统 / 性能</span></li>
+          <li><b>Web</b><span>全栈交付</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="hero__down" href="#dual" aria-label="继续">
+      <span>往下</span><i></i>
+    </a>
+  </section>
+
+
+  <!-- ============================================================
+       表与里 —— 融冰
+       ============================================================ -->
+  <section class="sec" id="dual">
+    <header class="sec__head" data-in>
+      <span class="sec__num">01</span>
+      <h2 class="sec__title">表与里</h2>
+      <p class="sec__sub">SURFACE &amp; DEPTH · 冰面之上是一角，之下是全部</p>
+    </header>
+
+    <div class="melt" id="melt" data-in>
+      <!-- 冰层覆盖 -->
+      <div class="melt__ice" aria-hidden="true">
+        <svg viewBox="0 0 600 400" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="iceg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"   stop-color="rgba(216,226,255,.30)"/>
+              <stop offset="45%"  stop-color="rgba(169,196,255,.16)"/>
+              <stop offset="100%" stop-color="rgba(177,140,255,.22)"/>
+            </linearGradient>
+          </defs>
+          <rect width="600" height="400" fill="url(#iceg)"/>
+          <g stroke="rgba(238,240,255,.30)" stroke-width="1.2" fill="none">
+            <path d="M0 40 L120 90 L60 180 L0 150"/>
+            <path d="M120 90 L260 60 L300 170 L180 230 L60 180"/>
+            <path d="M260 60 L430 30 L520 130 L300 170"/>
+            <path d="M430 30 L600 70 L600 200 L520 130"/>
+            <path d="M0 260 L140 240 L210 340 L80 400"/>
+            <path d="M140 240 L330 260 L360 380 L210 340"/>
+            <path d="M330 260 L520 240 L600 330 L600 400 L360 380"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="melt__stack">
+        <!-- 冷面 -->
+        <div class="melt__face melt__face--cold">
+          <p class="melt__tag">SURFACE</p>
+          <h3 class="melt__h">你以为的我</h3>
+          <ul class="melt__list">
+            <li>话很少，回消息很慢</li>
+            <li>不笑，也不太看人</li>
+            <li>「有事说事」型</li>
+            <li>聚会里站在角落的那个</li>
+            <li>看起来不好接近</li>
+          </ul>
+        </div>
+
+        <!-- 软面 -->
+        <div class="melt__face melt__face--warm">
+          <p class="melt__tag melt__tag--warm">DEPTH</p>
+          <h3 class="melt__h melt__h--warm">实际上的我</h3>
+          <ul class="melt__list melt__list--warm">
+            <li>回得慢是因为在反复删改，怕说错</li>
+            <li>不笑是因为一紧张脸就僵住了</li>
+            <li>「有事说事」其实是怕冷场</li>
+            <li>站角落是因为人一多就喘不过气</li>
+            <li>……其实很希望有人先开口</li>
+          </ul>
+          <p class="melt__foot">看完了？那就……别说出去了。<em>我会装作没写。</em></p>
+        </div>
+      </div>
+
+      <button class="melt__btn" id="meltBtn" aria-pressed="false" aria-controls="melt">
+        <span class="melt__btn-txt">敲开冰面</span>
+        <span class="melt__btn-ico" aria-hidden="true">❄</span>
+      </button>
+    </div>
+
+    <p class="melt__hint" data-in>（她不会主动说的。所以要你点。）</p>
+  </section>
+
+
+  <!-- ============================================================
+       属性
+       ============================================================ -->
+  <section class="sec" id="stats">
+    <header class="sec__head" data-in>
+      <span class="sec__num">02</span>
+      <h2 class="sec__title">属性</h2>
+      <p class="sec__sub">STATUS · 数据不会说谎，但我会</p>
+    </header>
+
+    <div class="panel" data-in>
+      <div class="panel__grid">
+        <div class="stat" data-val="97">
+          <div class="stat__top"><span>代码力</span><b><i class="count" data-to="97">0</i></b></div>
+          <div class="stat__bar"><i style="--w:97%;--c1:#a9c4ff;--c2:#eef0ff"></i></div>
+        </div>
+        <div class="stat" data-val="95">
+          <div class="stat__top"><span>架构力</span><b><i class="count" data-to="95">0</i></b></div>
+          <div class="stat__bar"><i style="--w:95%;--c1:#9d7bff;--c2:#c9b6ff"></i></div>
+        </div>
+        <div class="stat" data-val="94">
+          <div class="stat__top"><span>高冷度</span><b><i class="count" data-to="94">0</i></b></div>
+          <div class="stat__bar"><i style="--w:94%;--c1:#6f8dff;--c2:#a9c4ff"></i></div>
+        </div>
+        <div class="stat" data-val="91">
+          <div class="stat__top"><span>性能调优</span><b><i class="count" data-to="91">0</i></b></div>
+          <div class="stat__bar"><i style="--w:91%;--c1:#7c5cff;--c2:#b18cff"></i></div>
+        </div>
+        <div class="stat stat--low" data-val="2">
+          <div class="stat__top"><span>社交电量</span><b><i class="count" data-to="2">0</i>%</b></div>
+          <div class="stat__bar"><i style="--w:2%;--c1:#9ff0dc;--c2:#7fe3c9"></i></div>
+        </div>
+        <div class="stat stat--hide" data-val="88">
+          <div class="stat__top"><span>心软度</span><b><i class="count" data-to="88">0</i></b></div>
+          <div class="stat__bar"><i style="--w:88%;--c1:#ff9ed4;--c2:#ffc2e2"></i></div>
+        </div>
+      </div>
+
+      <p class="panel__note">
+        <span class="panel__mk">※</span>
+        「心软度」这一项本来不该出现的。……别看。
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       关于
+       ============================================================ -->
+  <section class="sec" id="about">
+    <header class="sec__head" data-in>
+      <span class="sec__num">03</span>
+      <h2 class="sec__title">关于</h2>
+      <p class="sec__sub">ABOUT · 只说必要的部分</p>
+    </header>
+
+    <div class="about">
+      <div class="about__prose" data-in>
+        <p class="about__lead">
+          我是<strong>羽渡鸦夜</strong>。做后端，也做系统，前端顺手。
+        </p>
+        <p>
+          大部分时间在写 <b>Java</b> —— 服务、并发、分布式，以及那些看不见但必须正确的地方。
+          需要碰到性能边界的时候会用 <b>C++</b>：内存、锁、缓存行、指令级的那点余量。
+          前端也写，因为一个系统最终是被人用的，我不想在最后一步将就。
+        </p>
+        <p>
+          我不擅长自我介绍，也不擅长把自己说得很好听。
+          所以这里放的是事实：写了多年，交付过不少，线上基本没出过大事。
+          <span class="cold">其余的，你从代码里看吧。</span>
+        </p>
+        <p class="about__cold">
+          —— 如果你是想找个人把事情做完，我不介意。<br />
+          <span class="soft">……但别指望我会一直陪你聊天。</span>
+        </p>
+
+        <ul class="about__tags">
+          <li>高并发 / 分布式</li>
+          <li>JVM 调优</li>
+          <li>C++ 系统开发</li>
+          <li>全栈交付</li>
+          <li>长期主义</li>
+        </ul>
+      </div>
+
+      <aside class="tagcard" data-in>
+        <div class="tagcard__glow" aria-hidden="true"></div>
+        <div class="trow"><span class="trow__k">代号</span><span class="trow__v">羽渡鸦夜</span></div>
+        <div class="trow"><span class="trow__k">坐标</span><span class="trow__v">中国</span></div>
+        <div class="trow"><span class="trow__k">方向</span><span class="trow__v">后端 · 系统 · 全栈</span></div>
+        <div class="trow"><span class="trow__k">主语言</span><span class="trow__v">Java · C++ · TypeScript</span></div>
+        <div class="trow"><span class="trow__k">信条</span><span class="trow__v">代码如羽，渡夜而行</span></div>
+        <div class="trow trow--state">
+          <span class="trow__k">状态</span>
+          <span class="trow__v"><i class="led"></i>可接单，但请先发文字</span>
+        </div>
+        <p class="tagcard__foot">※ 不接电话。<em>真的不接。</em></p>
+      </aside>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       技能
+       ============================================================ -->
+  <section class="sec" id="skills">
+    <header class="sec__head" data-in>
+      <span class="sec__num">04</span>
+      <h2 class="sec__title">技能</h2>
+      <p class="sec__sub">SKILLS · 数字而已，不必当真</p>
+    </header>
+
+    <div class="skills">
+      <div class="skills__bars" data-in>
+        <div class="skill" data-lv="95">
+          <div class="skill__top"><span>Java / Spring 生态</span><b>95</b></div>
+          <div class="skill__track"><i style="--c1:#9d7bff;--c2:#eef0ff"></i></div>
+        </div>
+        <div class="skill" data-lv="91">
+          <div class="skill__top"><span>C++ / 系统级开发</span><b>91</b></div>
+          <div class="skill__track"><i style="--c1:#7c5cff;--c2:#a9c4ff"></i></div>
+        </div>
+        <div class="skill" data-lv="93">
+          <div class="skill__top"><span>分布式 / 微服务架构</span><b>93</b></div>
+          <div class="skill__track"><i style="--c1:#6f8dff;--c2:#c9b6ff"></i></div>
+        </div>
+        <div class="skill" data-lv="88">
+          <div class="skill__top"><span>Web 全栈 / 前端工程</span><b>88</b></div>
+          <div class="skill__track"><i style="--c1:#b18cff;--c2:#ff9ed4"></i></div>
+        </div>
+        <div class="skill" data-lv="89">
+          <div class="skill__top"><span>数据库 / 缓存 / 中间件</span><b>89</b></div>
+          <div class="skill__track"><i style="--c1:#6a45e8;--c2:#b18cff"></i></div>
+        </div>
+        <div class="skill" data-lv="85">
+          <div class="skill__top"><span>云原生 / DevOps</span><b>85</b></div>
+          <div class="skill__track"><i style="--c1:#54418c;--c2:#9d7bff"></i></div>
+        </div>
+        <div class="skill skill--secret" data-lv="2">
+          <div class="skill__top"><span>寒暄能力</span><b>2</b></div>
+          <div class="skill__track"><i style="--c1:#ff9ed4;--c2:#ffc2e2"></i></div>
+        </div>
+      </div>
+
+      <div class="skills__right" data-in>
+        <h3 class="subhead">工具</h3>
+        <div class="tools">
+          <span>Java</span><span>Spring Boot</span><span>Spring Cloud</span>
+          <span>C++</span><span>C</span><span>TypeScript</span><span>JavaScript</span>
+          <span>React</span><span>Vue</span><span>HTML5</span><span>CSS3</span>
+          <span>MySQL</span><span>PostgreSQL</span><span>Redis</span><span>Kafka</span>
+          <span>Docker</span><span>Kubernetes</span><span>Nginx</span><span>Linux</span>
+          <span>Git</span><span>CI / CD</span><span>JVM 调优</span><span>性能剖析</span>
+        </div>
+
+        <h3 class="subhead">底层那点事</h3>
+        <div class="minis">
+          <div class="mini"><b>JVM</b><span>GC / 内存模型 / 字节码</span></div>
+          <div class="mini"><b>并发</b><span>线程模型 / 锁优化 / 无锁结构</span></div>
+          <div class="mini"><b>设计</b><span>DDD / 事件驱动 / 服务治理</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       作品
+       ============================================================ -->
+  <section class="sec" id="works">
+    <header class="sec__head" data-in>
+      <span class="sec__num">05</span>
+      <h2 class="sec__title">作品</h2>
+      <p class="sec__sub">WORKS · 挑了几个能看的</p>
+    </header>
+
+    <div class="works">
+      <article class="work" data-in data-tilt>
+        <div class="work__glow" aria-hidden="true"></div>
+        <header class="work__head">
+          <span class="work__tag">Java · 分布式</span>
+          <span class="work__no">01</span>
+        </header>
+        <h3 class="work__name">RavenGate<small>高并发网关</small></h3>
+        <p class="work__desc">
+          自研 API 网关：动态路由、限流熔断、灰度发布、全链路追踪。
+          单机压测稳定承载万级 QPS，P99 压到个位数毫秒。
+        </p>
+        <ul class="work__list">
+          <li>Netty 异步非阻塞转发内核</li>
+          <li>令牌桶 + 滑动窗口双限流</li>
+          <li>无侵入埋点与实时指标看板</li>
+        </ul>
+        <footer class="work__foot"><span>Netty</span><span>Spring Boot</span><span>Redis</span><span>Prometheus</span></footer>
+      </article>
+
+      <article class="work" data-in data-tilt>
+        <div class="work__glow" aria-hidden="true"></div>
+        <header class="work__head">
+          <span class="work__tag">C++ · 系统</span>
+          <span class="work__no">02</span>
+        </header>
+        <h3 class="work__name">NightCore<small>内存数据库引擎</small></h3>
+        <p class="work__desc">
+          从零实现的嵌入式 KV 存储引擎，自研跳表索引与 WAL 持久化，
+          读写混合场景下吞吐显著优于同类开源方案。
+        </p>
+        <ul class="work__list">
+          <li>零拷贝 I/O 与自定义内存池</li>
+          <li>多版本并发控制（MVCC）</li>
+          <li>崩溃恢复与数据校验</li>
+        </ul>
+        <footer class="work__foot"><span>C++20</span><span>CMake</span><span>Lock-free</span><span>mmap</span></footer>
+      </article>
+
+      <article class="work" data-in data-tilt>
+        <div class="work__glow" aria-hidden="true"></div>
+        <header class="work__head">
+          <span class="work__tag">全栈 · Web</span>
+          <span class="work__no">03</span>
+        </header>
+        <h3 class="work__name">Plume<small>实时协作平台</small></h3>
+        <p class="work__desc">
+          多人同时编辑的实时协作应用，基于 CRDT 自动消解冲突，
+          WebSocket 增量同步，端到端延迟控制在百毫秒内。
+        </p>
+        <ul class="work__list">
+          <li>CRDT 无冲突复制数据类型</li>
+          <li>增量 diff 同步 + 本地乐观更新</li>
+          <li>离线优先与自动重连</li>
+        </ul>
+        <footer class="work__foot"><span>TypeScript</span><span>React</span><span>WebSocket</span><span>Node.js</span></footer>
+      </article>
+
+      <article class="work" data-in data-tilt>
+        <div class="work__glow" aria-hidden="true"></div>
+        <header class="work__head">
+          <span class="work__tag">Java · 平台</span>
+          <span class="work__no">04</span>
+        </header>
+        <h3 class="work__name">Aurora<small>微服务基础框架</small></h3>
+        <p class="work__desc">
+          面向中大型团队的微服务脚手架：统一配置、注册发现、链路追踪、优雅上下线，
+          新服务从零到可上线只需一天。
+        </p>
+        <ul class="work__list">
+          <li>开箱即用的可观测性体系</li>
+          <li>标准化异常与日志规范</li>
+          <li>一键生成服务模板与部署清单</li>
+        </ul>
+        <footer class="work__foot"><span>Spring Cloud</span><span>Nacos</span><span>K8s</span><span>SkyWalking</span></footer>
+      </article>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       联系
+       ============================================================ -->
+  <section class="sec" id="contact">
+    <header class="sec__head" data-in>
+      <span class="sec__num">06</span>
+      <h2 class="sec__title">找我</h2>
+      <p class="sec__sub">CONTACT · 请发文字，不要打电话</p>
+    </header>
+
+    <div class="contact" data-in>
+      <div class="contact__left">
+        <h3 class="contact__h">合作可以。<span class="cold">寒暄不必。</span></h3>
+        <p class="contact__p">
+          技术合作、项目外包、远程岗位都可以谈。
+          我回得可能不快 —— 不是因为不想理你，是因为我在想怎么回才不算失礼。
+        </p>
+        <div class="contact__warn">
+          <span aria-hidden="true">⚠</span>
+          语音、电话、突然的视频邀请：一律不接。文字聊，谢谢。
+        </div>
+        <p class="contact__dere">……但你真的发了，我也是会看的。</p>
+      </div>
+
+      <div class="contact__links">
+        <a class="lnk" href="https://github.com/YuDu-Yaye" target="_blank" rel="noopener noreferrer">
+          <span class="lnk__ico">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.7.08-.7 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.75.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.2.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+          </span>
+          <span class="lnk__txt"><b>GitHub</b><small>github.com/YuDu-Yaye</small></span>
+          <span class="lnk__go" aria-hidden="true">→</span>
+        </a>
+
+        <a class="lnk" href="mailto:yudu.yaye@outlook.com">
+          <span class="lnk__ico">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4.5 8 7.5 5.5L19.5 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="lnk__txt"><b>Email</b><small>yudu.yaye@outlook.com</small></span>
+          <span class="lnk__go" aria-hidden="true">→</span>
+        </a>
+
+        <button class="lnk lnk--btn" type="button" data-copy="yudu_raven_night">
+          <span class="lnk__ico">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 10.5a4 4 0 0 1 4-4h3.5a4 4 0 0 1 0 8H14"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M16 13.5a4 4 0 0 1-4 4H8.5a4 4 0 0 1 0-8H10"/></svg>
+          </span>
+          <span class="lnk__txt"><b>微信</b><small>yudu_raven_night</small></span>
+          <span class="lnk__go" data-copy-label>复制</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="brand__crystal brand__crystal--sm" aria-hidden="true">
+        <svg viewBox="0 0 48 48">
+          <g stroke="#a9c4ff" stroke-width="2.2" stroke-linecap="round" fill="none">
+            <path d="M24 8v32M12 16l24 16M36 16L12 32"/>
+          </g>
+        </svg>
+      </span>
+      <div>
+        <strong>羽渡鸦夜</strong>
+        <small>代码如羽 · 渡夜而行</small>
+      </div>
+    </div>
+    <p class="footer__copy">
+      © <span id="year">2026</span> 羽渡鸦夜 · Built in the cold, with warm hands.<br />
+      <span class="soft">看到这里了……哼，随你。</span>
+    </p>
+  </div>
+</footer>
+
+<a class="totop" id="toTop" href="#top" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M6 12l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
