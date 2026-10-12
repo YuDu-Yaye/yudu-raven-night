@@ -1,0 +1,11 @@
+* text=auto eol=lf
+
+*.svg text
+*.md  text
+*.html text
+*.css  text
+*.js   text
+
+*.png binary
+*.jpg binary
+*.webp binary
