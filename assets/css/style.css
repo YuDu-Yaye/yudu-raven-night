@@ -1100,15 +1100,248 @@ button { font: inherit; color: inherit; }
 .totop svg { width: 19px; height: 19px; }
 .totop.is-on { opacity: 1; visibility: visible; transform: translateY(0); }
 .totop:hover { border-color: var(--ice-400); box-shadow: var(--glow-ice); color: #fff; }
+.totop.is-on svg { animation: totopNudge 3.2s ease-in-out infinite; }
+@keyframes totopNudge {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
 
-.no-js [data-in] { opacity: 1 !important; transform: none !important; }
+.bg__grid {
+  animation: gridDrift 26s linear infinite;
+}
+@keyframes gridDrift {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 64px 64px, 64px 64px; }
+}
+
+.brand__crystal svg { animation: crystalSpin 22s linear infinite; }
+@keyframes crystalSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.brand:hover .brand__crystal svg { animation-duration: 3s; }
+
+.sec__num {
+  animation: numSlide 5s ease-in-out infinite;
+}
+@keyframes numSlide {
+  0%, 100% { transform: translateX(0); opacity: .75; }
+  50%      { transform: translateX(3px); opacity: 1; }
+}
+
+.tier__count {
+  animation: countPulse 4s ease-in-out infinite;
+}
+@keyframes countPulse {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.35); }
+}
+
+.domain__ico svg,
+.work__glow {
+  transition: transform .5s var(--out);
+}
+.domain:hover .domain__ico svg { transform: scale(1.12) rotate(6deg); }
+
+.tier__list li,
+.domain__tags li,
+.work__foot span,
+.tools span,
+.agent,
+.mini,
+.lnk {
+  position: relative;
+}
+
+.agent__dot {
+  animation: dotPulse 2.6s ease-in-out infinite;
+}
+.agent:nth-child(2) .agent__dot { animation-delay: .5s; }
+.agent:nth-child(3) .agent__dot { animation-delay: 1s; }
+.agent:nth-child(4) .agent__dot { animation-delay: 1.5s; }
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 8px var(--c, var(--ice-400)); }
+  50%      { transform: scale(1.45); box-shadow: 0 0 18px var(--c, var(--ice-400)); }
+}
+
+.legend__item .lv {
+  animation: lvBlink 3.4s ease-in-out infinite;
+}
+.legend__item:nth-child(2) .lv { animation-delay: .4s; }
+.legend__item:nth-child(3) .lv { animation-delay: .8s; }
+.legend__item:nth-child(4) .lv { animation-delay: 1.2s; }
+@keyframes lvBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .45; transform: scale(.82); }
+}
+
+.work:hover .work__name,
+.domain:hover .domain__name {
+  animation: nameGlow 1.6s ease-in-out infinite;
+}
+@keyframes nameGlow {
+  0%, 100% { text-shadow: 0 0 0 rgba(169,196,255,0); }
+  50%      { text-shadow: 0 0 18px rgba(169,196,255,.55); }
+}
+
+.coldnote p { animation: noteFade 8s ease-in-out infinite; }
+@keyframes noteFade {
+  0%, 92%, 100% { opacity: 1; }
+  96%           { opacity: .35; }
+}
+
+.ai__lead, .about__lead {
+  background: linear-gradient(90deg, rgba(169,196,255,.10), transparent 70%);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 1.4s var(--out) .3s;
+}
+.ai__lead.is-lead-in, .about__lead.is-lead-in { background-size: 100% 100%; }
+
+.matrix__note .matrix__mk,
+.panel__mk {
+  display: inline-block;
+  animation: mkSpin 7s linear infinite;
+}
+@keyframes mkSpin {
+  0%, 70%, 100% { transform: rotate(0deg); }
+  85%           { transform: rotate(180deg); }
+}
+
+.no-js [data-in] { opacity: 1 !important; transform: none !important; filter: none !important; }
 
 .js [data-in] {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .8s var(--out), transform .8s var(--out);
+  transform: translateY(24px);
+  transition:
+    opacity .75s var(--out),
+    transform .75s var(--out);
+  transition-delay: var(--d, 0ms);
+  will-change: opacity, transform;
 }
-.js [data-in].is-in { opacity: 1; transform: none; }
+.js [data-in="left"]  { transform: translateX(-34px); }
+.js [data-in="right"] { transform: translateX(34px); }
+.js [data-in="scale"] { transform: scale(.94); }
+.js [data-in="tilt"]  { transform: translateY(28px) rotate(-1.4deg); }
+.js [data-in="blur"]  {
+  transform: none;
+  filter: blur(11px);
+  transition: opacity .85s var(--out), filter .85s var(--out);
+  transition-delay: var(--d, 0ms);
+}
+
+.js [data-in].is-in,
+.js [data-in="left"].is-in,
+.js [data-in="right"].is-in,
+.js [data-in="scale"].is-in,
+.js [data-in="tilt"].is-in,
+.js [data-in="blur"].is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  will-change: auto;
+}
+
+.js .hero__name .hero__cn {
+  opacity: 0;
+  filter: blur(18px);
+  letter-spacing: .52em;
+  transform: translateY(12px);
+  transition:
+    opacity 1.1s var(--out),
+    filter 1.2s var(--out),
+    letter-spacing 1.5s var(--out),
+    transform 1.1s var(--out);
+}
+.js .hero__name.is-in .hero__cn {
+  opacity: 1;
+  filter: blur(0);
+  letter-spacing: .14em;
+  transform: none;
+}
+
+.js .hero__name .hero__en {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 1s var(--out) .35s, transform 1s var(--out) .35s;
+}
+.js .hero__name.is-in .hero__en { opacity: 1; transform: none; }
+
+.js .hero__rule i { animation-play-state: paused; }
+.js .hero__rule.is-in i { animation-play-state: running; }
+
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -60%;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(226,233,255,.10), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+  z-index: 2;
+}
+.shine.is-in::after { animation: shineSweep 1.5s var(--out) .25s 1 both; }
+@keyframes shineSweep {
+  from { left: -60%; }
+  to   { left: 130%; }
+}
+
+.js .tier .tier__list li,
+.js .domain .domain__tags li,
+.js .work .work__foot span {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .38s var(--out), transform .38s var(--out);
+}
+.js .tier.is-in .tier__list li,
+.js .domain.is-in .domain__tags li,
+.js .work.is-in .work__foot span {
+  opacity: 1;
+  transform: none;
+}
+.js .tier.is-in .tier__list li { transition-delay: calc(var(--i, 0) * 18ms + 120ms); }
+.js .domain.is-in .domain__tags li { transition-delay: calc(var(--i, 0) * 22ms + 140ms); }
+.js .work.is-in .work__foot span { transition-delay: calc(var(--i, 0) * 30ms + 160ms); }
+
+.js .tier__head i.lv,
+.js .domain__ico {
+  transition: transform .6s var(--out), box-shadow .6s var(--out);
+}
+.js .tier:not(.is-in) .tier__head i.lv { transform: scale(0) rotate(-90deg); }
+.js .domain:not(.is-in) .domain__ico { transform: scale(.6) rotate(-12deg); }
+.js .tier.is-in .tier__head i.lv { transform: scale(1) rotate(0); }
+.js .domain.is-in .domain__ico { transform: none; }
+
+.js .tier::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--lv1), var(--lv2), transparent);
+  transition: transform 1s var(--out) .15s;
+}
+.js .tier--2::before { background: linear-gradient(90deg, var(--lv2), var(--lv3), transparent); }
+.js .tier--3::before { background: linear-gradient(90deg, var(--lv3), rgba(255,196,107,.35), transparent); }
+.js .tier--4::before { background: linear-gradient(90deg, var(--lv4), transparent); }
+.js .tier.is-in::before { transform: scaleX(1); }
+
+.js .sec__title::after {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.1s var(--out) .2s;
+}
+.js .sec__head.is-in .sec__title::after { transform: scaleX(1); }
+
+.js .lnk__ico svg { transition: transform .45s var(--bounce); }
+.js .lnk:hover .lnk__ico svg { transform: scale(1.14) rotate(-8deg); }
 
 @media (max-width: 1000px) {
   .nav__links, .nav__cta { display: none; }
@@ -1161,7 +1394,23 @@ button { font: inherit; color: inherit; }
     transition-duration: .001ms !important;
     scroll-behavior: auto !important;
   }
-  .js [data-in] { opacity: 1; transform: none; }
+  .js [data-in],
+  .js .hero__name .hero__cn,
+  .js .hero__name .hero__en,
+  .js .tier .tier__list li,
+  .js .domain .domain__tags li,
+  .js .work .work__foot span {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    letter-spacing: inherit !important;
+  }
+  .js .tier::before,
+  .js .sec__title::after { transform: scaleX(1) !important; }
+  .js .hero__rule i { animation-play-state: running !important; }
+  .js .tier:not(.is-in) .tier__head i.lv,
+  .js .domain:not(.is-in) .domain__ico { transform: none !important; }
+  .shine::after { display: none; }
   #frost { display: none; }
 }
 

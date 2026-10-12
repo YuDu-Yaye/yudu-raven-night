@@ -210,23 +210,97 @@
 
     if (reduce || !('IntersectionObserver' in window)) {
       items.forEach(function (el) { el.classList.add('is-in'); });
+      $$('.tier__list li, .domain__tags li, .work__foot span, .tools span').forEach(function (el) {
+        el.style.removeProperty('--i');
+      });
       return;
     }
 
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var el = entry.target;
-        var sibs = el.parentElement ? $$('[data-in]', el.parentElement) : [];
-        var i = sibs.indexOf(el);
-        var delay = i > 0 ? Math.min(i * 70, 340) : 0;
+    $$('.tier__list').forEach(function (list) {
+      $$('li', list).forEach(function (li, i) { li.style.setProperty('--i', i); });
+    });
+    $$('.domain__tags').forEach(function (list) {
+      $$('li', list).forEach(function (li, i) { li.style.setProperty('--i', i); });
+    });
+    $$('.work__foot').forEach(function (foot) {
+      $$('span', foot).forEach(function (s, i) { s.style.setProperty('--i', i); });
+    });
 
-        setTimeout(function () { el.classList.add('is-in'); }, delay);
-        io.unobserve(el);
+    function groupOf(el) {
+      var parent = el.parentElement;
+      if (!parent) return [];
+      var tag = parent.tagName.toLowerCase();
+      if (tag === 'div' || tag === 'ul' || tag === 'ol' || tag === 'aside' || tag === 'header') {
+        return $$('[data-in]', parent);
+      }
+      return [el];
+    }
+
+    function delayFor(el) {
+      var group = groupOf(el);
+      var idx = group.indexOf(el);
+      if (group.length < 2 || idx <= 0) return 0;
+      var step = Math.min(90, Math.max(55, 420 / group.length));
+      return Math.round(idx * step);
+    }
+
+    function watch(selector, className, stagger) {
+      var list = $$(selector);
+      if (!list.length) return;
+
+      var queue = [];
+      var io = typeof IntersectionObserver === 'function'
+        ? new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              reveal(entry.target, false);
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' })
+        : null;
+
+      function reveal(el, force) {
+        var i = queue.indexOf(el);
+        if (i !== -1) queue.splice(i, 1);
+        if (io) io.unobserve(el);
+
+        var d = (stagger && !force) ? delayFor(el) : 0;
+        if (d > 0) {
+          el.style.setProperty('--d', d + 'ms');
+          setTimeout(function () { el.classList.add(className); }, d);
+        } else {
+          el.style.setProperty('--d', '0ms');
+          el.classList.add(className);
+        }
+      }
+
+      list.forEach(function (el) {
+        queue.push(el);
+        if (io) io.observe(el); else reveal(el, true);
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
 
-    items.forEach(function (el) { io.observe(el); });
+      if (!io) return;
+
+      requestAnimationFrame(function () {
+        var vh = window.innerHeight || 800;
+        queue.slice().forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          if (r.top < vh * 0.9 && r.bottom > 0) reveal(el, false);
+        });
+      });
+
+      setTimeout(function () {
+        var vh = window.innerHeight || 800;
+        queue.slice().forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          if (r.top < vh * 1.1 && r.bottom > -100) reveal(el, true);
+        });
+      }, 1500);
+    }
+
+    watch('[data-in]', 'is-in', true);
+    watch('.sec__head', 'is-in', false);
+    watch('.ai__lead, .about__lead', 'is-lead-in', false);
+    watch('.shine', 'is-in', false);
   }
 
   function initTierCounts() {
