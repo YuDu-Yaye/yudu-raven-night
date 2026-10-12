@@ -527,7 +527,9 @@ b, strong { color: #fff; font-weight: 650; }
 .kicker {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: .6rem;
+  max-width: 100%;
   margin-bottom: 1.4rem;
   font-family: var(--mono);
   font-size: .68rem;
@@ -1293,6 +1295,15 @@ b, strong { color: #fff; font-weight: 650; }
   .footer__inner { flex-direction: column; text-align: center; }
   .footer__copy { text-align: center; }
   .hero__meta { gap: 1.4rem; }
+
+  /* 窄屏：收窄字距，避免标签行溢出被裁 */
+  .kicker { font-size: .6rem; letter-spacing: .16em; gap: .45rem; }
+  .kicker__line { width: 18px; }
+  .hero__en { letter-spacing: .26em; }
+  .sec__sub { letter-spacing: .12em; }
+  .coldnote p { font-size: .82rem; }
+  .melt__btn { letter-spacing: .2em; font-size: .7rem; }
+  .melt__btn:hover { letter-spacing: .24em; }
 }
 
 @media (max-width: 420px) {

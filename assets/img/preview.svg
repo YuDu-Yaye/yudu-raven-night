@@ -14,6 +14,12 @@
       <stop offset="0%"   stop-color="#ff9ed4"/>
       <stop offset="100%" stop-color="#ffc2e2"/>
     </linearGradient>
+    <!-- 徽记专用：必须用 userSpaceOnUse，否则零宽度的竖线拿不到渐变，整条不会画 -->
+    <linearGradient id="iceEmblem" gradientUnits="userSpaceOnUse" x1="-52" y1="-52" x2="52" y2="52">
+      <stop offset="0%"   stop-color="#eef0ff"/>
+      <stop offset="45%"  stop-color="#a9c4ff"/>
+      <stop offset="100%" stop-color="#b18cff"/>
+    </linearGradient>
     <radialGradient id="halo" cx="50%" cy="50%" r="50%">
       <stop offset="0%"   stop-color="#a9c4ff" stop-opacity=".34"/>
       <stop offset="60%"  stop-color="#9d7bff" stop-opacity=".14"/>
@@ -50,9 +56,9 @@
   </g>
 
   <!-- 冰晶徽记 -->
-  <g transform="translate(120,150)" stroke="url(#ice)" stroke-width="2.4"
+  <g transform="translate(120,150)" stroke="url(#iceEmblem)" stroke-width="2.4"
      stroke-linecap="round" fill="none">
-    <path d="M0 -52 V52"/>
+    <path d="M0 -52 v104"/>
     <path d="M-45 -26 L45 26"/>
     <path d="M45 -26 L-45 26"/>
     <path d="M0 -40 L-13 -50 M0 -40 L13 -50"/>
